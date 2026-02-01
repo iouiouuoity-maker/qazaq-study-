@@ -1,133 +1,106 @@
+
 <!doctype html>
 <html lang="kk">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Қазақ тілі • 7–8</title>
-  <link rel="stylesheet" href="styles.css" />
+
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/components.css">
 </head>
 <body>
-  <header class="top">
-    <div class="brand">Қазақ тілі • 7–8</div>
 
-    <div class="bar">
-      <div class="seg" role="group" aria-label="Сынып">
-        <button class="segbtn is-on" data-grade="all">7–8</button>
-        <button class="segbtn" data-grade="7">7</button>
-        <button class="segbtn" data-grade="8">8</button>
-      </div>
+<header class="top">
+  <div class="brand">Қазақ тілі • 7–8</div>
 
-      <div class="seg" role="group" aria-label="Көрініс">
-        <button class="segbtn is-on" data-view="lesson">Сабақ</button>
-        <button class="segbtn" data-view="comic">Комикс</button>
-        <button class="segbtn" data-view="words">Сөздер</button>
-      </div>
-
-      <div class="tog">
-        <button class="tgl" id="t-contrast" aria-pressed="false" title="Контраст">◐</button>
-        <button class="tgl" id="t-font" aria-pressed="false" title="Үлкен">A+</button>
-        <button class="tgl is-on" id="t-sound" aria-pressed="true" title="Дыбыс">🔊</button>
-      </div>
+  <div class="controls">
+    <div class="seg">
+      <button data-grade="all" class="on">7–8</button>
+      <button data-grade="7">7</button>
+      <button data-grade="8">8</button>
     </div>
-  </header>
 
-  <main class="wrap">
-    <aside class="side">
-      <div class="card">
-        <div class="row">
-          <div class="ttl">Тақырыптар</div>
-          <div class="dots" id="dots"></div>
+    <div class="seg">
+      <button data-view="lesson" class="on">Сабақ</button>
+      <button data-view="comics">Комикс</button>
+      <button data-view="words">Сөздер</button>
+    </div>
+
+    <div class="seg">
+      <button id="c-contrast">◐</button>
+      <button id="c-font">A+</button>
+      <button id="c-sound" class="on">🔊</button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <aside class="side">
+    <div class="card">
+      <div class="title">Тақырыптар</div>
+      <div id="lessonList"></div>
+    </div>
+  </aside>
+
+  <section class="content">
+    <!-- Сабақ -->
+    <section id="view-lesson" class="view on">
+      <div class="card big">
+        <div class="meta">
+          <span id="m-grade">7–8</span>
+          <span id="m-topic"></span>
         </div>
-        <div class="list" id="lessonList"></div>
+
+        <h1 id="lessonTitle"></h1>
+        <div id="lessonText"></div>
+
+        <div class="card inner">
+          <div class="title">Сөйлем</div>
+          <div id="wordBank"></div>
+          <div id="sentenceOut"></div>
+        </div>
+
+        <div class="grid">
+          <div class="card inner">
+            <div class="title">Түсіну</div>
+            <div id="quiz"></div>
+          </div>
+
+          <div class="card inner">
+            <div class="title">Таңда</div>
+            <div id="pick"></div>
+          </div>
+        </div>
       </div>
-
-      <div class="card mini">
-        <div class="ttl">Жылдам</div>
-        <div class="quick">
-          <button class="qbtn" id="q-rand">Келесі</button>
-          <button class="qbtn" id="q-reset">Таза</button>
-        </div>
-      </div>
-    </aside>
-
-    <section class="main">
-      <!-- LESSON -->
-      <section class="view is-on" id="view-lesson">
-        <div class="card hero">
-          <div class="meta">
-            <div class="tag" id="tagGrade">7–8</div>
-            <div class="tag" id="tagTopic">Мәтін</div>
-          </div>
-
-          <h1 class="h1" id="lessonTitle">—</h1>
-
-          <div class="textbox" id="lessonText"></div>
-
-          <div class="panel">
-            <div class="phead">
-              <div class="pttl">Сөйлем</div>
-              <div class="pbtns">
-                <button class="btn" id="b-sayLine">Оқу</button>
-                <button class="btn ghost" id="b-clearLine">Тазалау</button>
-              </div>
-            </div>
-            <div class="bank" id="bank"></div>
-            <div class="out" id="out" aria-live="polite"></div>
-          </div>
-
-          <div class="grid2">
-            <div class="card sub">
-              <div class="ttl">Түсіну</div>
-              <div class="quiz" id="quiz"></div>
-            </div>
-            <div class="card sub">
-              <div class="ttl">Таңда</div>
-              <div class="pick" id="pick"></div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- COMIC -->
-      <section class="view" id="view-comic">
-        <div class="card">
-          <div class="row">
-            <div class="ttl">Қазақша комикстер</div>
-            <div class="comicbar" id="comicBar"></div>
-          </div>
-
-          <div class="frame">
-            <iframe
-              id="comicFrame"
-              title="Комикс"
-              src="https://qazcomics.kz/kz"
-              loading="lazy"
-              referrerpolicy="no-referrer"
-            ></iframe>
-          </div>
-
-          <div class="row" style="margin-top:10px">
-            <button class="btn" id="comicOpen">Ашу</button>
-          </div>
-        </div>
-      </section>
-
-      <!-- WORDS -->
-      <section class="view" id="view-words">
-        <div class="card">
-          <div class="row">
-            <div class="ttl">Сөздер</div>
-            <div class="wbar">
-              <input class="inp" id="wSearch" placeholder="Іздеу…" />
-              <button class="btn" id="wReadAll">Оқу</button>
-            </div>
-          </div>
-          <div class="wlist" id="wList"></div>
-        </div>
-      </section>
     </section>
-  </main>
 
-  <script src="app.js"></script>
+    <!-- Комикс -->
+    <section id="view-comics" class="view">
+      <div class="card">
+        <div class="title">Қазақша комикстер</div>
+        <div id="comicList"></div>
+      </div>
+    </section>
+
+    <!-- Сөздер -->
+    <section id="view-words" class="view">
+      <div class="card">
+        <div class="title">Сөздер</div>
+        <div id="wordList"></div>
+      </div>
+    </section>
+  </section>
+</main>
+
+<script src="assets/js/state.js"></script>
+<script src="assets/js/data-lessons.js"></script>
+<script src="assets/js/data-words.js"></script>
+<script src="assets/js/data-comics.js"></script>
+<script src="assets/js/speech.js"></script>
+<script src="assets/js/render.js"></script>
+<script src="assets/js/app.js"></script>
+
 </body>
 </html>
