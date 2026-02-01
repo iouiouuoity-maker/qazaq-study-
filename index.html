@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="kk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Қазақ тілі • 7–8</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">Қазақ тілі • 7–8</div>
+    <nav class="tabs" aria-label="Бөлімдер">
+      <button class="tab is-active" data-view="comics">Комикс</button>
+      <button class="tab" data-view="words">Сөздер</button>
+      <button class="tab" data-view="tasks">Тапсырма</button>
+      <button class="tab" data-view="texts">Мәтін</button>
+    </nav>
+    <div class="controls">
+      <button class="chip" id="btn-contrast" aria-pressed="false">Контраст</button>
+      <button class="chip" id="btn-font" aria-pressed="false">Үлкен әріп</button>
+      <button class="chip" id="btn-sound" aria-pressed="true">Дыбыс</button>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <!-- COMICS -->
+    <section class="view is-active" id="view-comics">
+      <div class="card">
+        <div class="row">
+          <h2>ЕР ТАРҒЫН</h2>
+          <div class="row-right">
+            <button class="chip" data-comic="https://qazcomics.kz/kz/comics/5/1">1</button>
+            <button class="chip is-on" data-comic="https://qazcomics.kz/kz/comics/5/2">2</button>
+            <button class="chip" data-comic="https://qazcomics.kz/kz/comics/5/3">3</button>
+            <button class="chip" data-comic="https://qazcomics.kz/kz/comics/5/4">4</button>
+          </div>
+        </div>
+
+        <div class="iframeBox">
+          <iframe
+            id="comicFrame"
+            title="Комикс"
+            src="https://qazcomics.kz/kz/comics/5/2"
+            loading="lazy"
+            referrerpolicy="no-referrer"
+          ></iframe>
+        </div>
+
+        <div class="hintline">
+          <a class="link" href="https://qazcomics.kz/kz/comics/5/2" target="_blank" rel="noopener">Толық ашу</a>
+        </div>
+      </div>
+
+      <div class="grid2">
+        <div class="card">
+          <h3>Түсіну</h3>
+          <div class="quiz" id="comicQuiz"></div>
+        </div>
+        <div class="card">
+          <h3>Сөйлем</h3>
+          <div class="sentence">
+            <div class="words" id="sentenceWords"></div>
+            <div class="out">
+              <div id="sentenceOut" class="outText" aria-live="polite"></div>
+              <div class="outBtns">
+                <button class="btn" id="btn-say">Оқу</button>
+                <button class="btn ghost" id="btn-clear">Тазалау</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WORDS -->
+    <section class="view" id="view-words">
+      <div class="card">
+        <div class="row">
+          <h2>Сөз + сурет</h2>
+          <select id="topicSelect" class="select" aria-label="Тақырып">
+            <option value="all">Барлығы</option>
+          </select>
+        </div>
+        <div class="vocab" id="vocabGrid"></div>
+      </div>
+    </section>
+
+    <!-- TASKS -->
+    <section class="view" id="view-tasks">
+      <div class="card">
+        <div class="row">
+          <h2>Таңда</h2>
+          <select id="taskTopicSelect" class="select" aria-label="Тақырып">
+            <option value="all">Барлығы</option>
+          </select>
+        </div>
+        <div id="pickTask" class="pick"></div>
+      </div>
+    </section>
+
+    <!-- TEXTS -->
+    <section class="view" id="view-texts">
+      <div class="card">
+        <div class="row">
+          <h2>Қысқа мәтін</h2>
+          <select id="textSelect" class="select" aria-label="Мәтін"></select>
+        </div>
+        <article class="textCard" id="textCard"></article>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
