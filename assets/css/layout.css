@@ -1,0 +1,28 @@
+.top{
+  position:sticky;top:0;
+  background:#0b1220;
+  border-bottom:1px solid var(--line);
+  padding:12px;
+}
+
+.brand{font-weight:900}
+
+.controls{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:8px;
+}
+
+.wrap{
+  max-width:1200px;
+  margin:auto;
+  padding:14px;
+  display:grid;
+  grid-template-columns:300px 1fr;
+  gap:12px;
+}
+
+@media(max-width:900px){
+  .wrap{grid-template-columns:1fr}
+}
