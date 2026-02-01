@@ -1,0 +1,53 @@
+.seg button{
+  background:none;
+  border:1px solid var(--line);
+  color:var(--text);
+  padding:8px 12px;
+  border-radius:999px;
+}
+.seg button.on{background:var(--btn)}
+
+.card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:14px;
+}
+.card.big{padding:18px}
+.card.inner{margin-top:12px}
+
+.title{font-weight:900;margin-bottom:10px}
+.meta span{
+  border:1px solid var(--line);
+  padding:6px 10px;
+  border-radius:999px;
+  margin-right:6px;
+}
+
+.view{display:none}
+.view.on{display:block}
+
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+@media(max-width:900px){.grid{grid-template-columns:1fr}}
+
+#lessonText div,
+#quiz button,
+#pick button,
+#wordBank button{
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:10px;
+  margin:6px 0;
+  background:rgba(255,255,255,.03);
+  color:var(--text);
+}
+
+#sentenceOut{
+  min-height:40px;
+  font-weight:900;
+  margin-top:10px;
+}
