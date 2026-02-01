@@ -7,64 +7,68 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <header class="topbar">
+  <header class="top">
     <div class="brand">Қазақ тілі • 7–8</div>
+
     <nav class="tabs" aria-label="Бөлімдер">
-      <button class="tab is-active" data-view="comics">Комикс</button>
+      <button class="tab is-on" data-view="comic">Комикс</button>
+      <button class="tab" data-view="text">Мәтін</button>
+      <button class="tab" data-view="task">Тапсырма</button>
       <button class="tab" data-view="words">Сөздер</button>
-      <button class="tab" data-view="tasks">Тапсырма</button>
-      <button class="tab" data-view="texts">Мәтін</button>
     </nav>
-    <div class="controls">
-      <button class="chip" id="btn-contrast" aria-pressed="false">Контраст</button>
-      <button class="chip" id="btn-font" aria-pressed="false">Үлкен әріп</button>
-      <button class="chip" id="btn-sound" aria-pressed="true">Дыбыс</button>
+
+    <div class="toggles" aria-label="Баптаулар">
+      <button class="tgl" id="t-contrast" aria-pressed="false" title="Контраст">◐</button>
+      <button class="tgl" id="t-font" aria-pressed="false" title="Үлкен әріп">A+</button>
+      <button class="tgl is-on" id="t-sound" aria-pressed="true" title="Дыбыс">🔊</button>
     </div>
   </header>
 
   <main class="wrap">
-    <!-- COMICS -->
-    <section class="view is-active" id="view-comics">
+    <!-- COMIC -->
+    <section class="view is-on" id="view-comic">
       <div class="card">
         <div class="row">
-          <h2>ЕР ТАРҒЫН</h2>
-          <div class="row-right">
+          <h2 class="h">Қазақша комикстер</h2>
+          <div class="rowR">
+            <button class="chip is-on" data-comic="https://qazcomics.kz/kz">Каталог</button>
             <button class="chip" data-comic="https://qazcomics.kz/kz/comics/5/1">1</button>
-            <button class="chip is-on" data-comic="https://qazcomics.kz/kz/comics/5/2">2</button>
+            <button class="chip" data-comic="https://qazcomics.kz/kz/comics/5/2">2</button>
             <button class="chip" data-comic="https://qazcomics.kz/kz/comics/5/3">3</button>
             <button class="chip" data-comic="https://qazcomics.kz/kz/comics/5/4">4</button>
           </div>
         </div>
 
-        <div class="iframeBox">
+        <div class="frame">
           <iframe
             id="comicFrame"
-            title="Комикс"
-            src="https://qazcomics.kz/kz/comics/5/2"
+            title="QazComics"
+            src="https://qazcomics.kz/kz"
             loading="lazy"
             referrerpolicy="no-referrer"
           ></iframe>
         </div>
 
-        <div class="hintline">
-          <a class="link" href="https://qazcomics.kz/kz/comics/5/2" target="_blank" rel="noopener">Толық ашу</a>
+        <div class="row" style="margin-top:10px">
+          <button class="btn" id="comicOpen">Ашу</button>
         </div>
       </div>
 
       <div class="grid2">
         <div class="card">
-          <h3>Түсіну</h3>
-          <div class="quiz" id="comicQuiz"></div>
+          <h3 class="h3">Түсіну</h3>
+          <div class="quiz" id="quiz"></div>
         </div>
+
         <div class="card">
-          <h3>Сөйлем</h3>
-          <div class="sentence">
-            <div class="words" id="sentenceWords"></div>
+          <h3 class="h3">Сөйлем</h3>
+          <div class="sent">
+            <div class="chips" id="sentBank"></div>
             <div class="out">
-              <div id="sentenceOut" class="outText" aria-live="polite"></div>
-              <div class="outBtns">
-                <button class="btn" id="btn-say">Оқу</button>
-                <button class="btn ghost" id="btn-clear">Тазалау</button>
+              <div class="outTxt" id="sentOut" aria-live="polite"></div>
+              <div class="btns">
+                <button class="btn" id="b-say">Оқу</button>
+                <button class="btn ghost" id="b-clear">Тазалау</button>
               </div>
             </div>
           </div>
@@ -72,40 +76,36 @@
       </div>
     </section>
 
+    <!-- TEXT -->
+    <section class="view" id="view-text">
+      <div class="card">
+        <div class="row">
+          <h2 class="h">Қысқа мәтін</h2>
+          <select class="sel" id="textSel" aria-label="Мәтін"></select>
+        </div>
+        <article class="text" id="textBox"></article>
+      </div>
+    </section>
+
+    <!-- TASK -->
+    <section class="view" id="view-task">
+      <div class="card">
+        <div class="row">
+          <h2 class="h">Таңда</h2>
+          <button class="btn" id="b-new">Жаңарту</button>
+        </div>
+        <div class="pick" id="pickBox"></div>
+      </div>
+    </section>
+
     <!-- WORDS -->
     <section class="view" id="view-words">
       <div class="card">
         <div class="row">
-          <h2>Сөз + сурет</h2>
-          <select id="topicSelect" class="select" aria-label="Тақырып">
-            <option value="all">Барлығы</option>
-          </select>
+          <h2 class="h">Сөздер</h2>
+          <button class="btn" id="b-readAll">Оқу</button>
         </div>
-        <div class="vocab" id="vocabGrid"></div>
-      </div>
-    </section>
-
-    <!-- TASKS -->
-    <section class="view" id="view-tasks">
-      <div class="card">
-        <div class="row">
-          <h2>Таңда</h2>
-          <select id="taskTopicSelect" class="select" aria-label="Тақырып">
-            <option value="all">Барлығы</option>
-          </select>
-        </div>
-        <div id="pickTask" class="pick"></div>
-      </div>
-    </section>
-
-    <!-- TEXTS -->
-    <section class="view" id="view-texts">
-      <div class="card">
-        <div class="row">
-          <h2>Қысқа мәтін</h2>
-          <select id="textSelect" class="select" aria-label="Мәтін"></select>
-        </div>
-        <article class="textCard" id="textCard"></article>
+        <div class="list" id="wordList"></div>
       </div>
     </section>
   </main>
